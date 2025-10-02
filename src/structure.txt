@@ -1,0 +1,75 @@
+Folder PATH listing for volume file
+Volume serial number is D4E9-48BA
+E:.
+|   structure.txt
+|   
++---app
+|   |   error.tsx
+|   |   globals.css
+|   |   layout.tsx
+|   |   
+|   +---(auth)
+|   +---(public)
+|   \---ops
+|       |   page.tsx
+|       |   
+|       +---billing
+|       +---cases
+|       +---finances
+|       |   \---taxes
+|       |       |   page.tsx
+|       |       |   
+|       |       +---create
+|       |       |       page.tsx
+|       |       |       
+|       |       \---[id]
+|       |           \---edit
+|       |                   page.tsx
+|       |                   
+|       +---incident
+|       |   |   page.tsx
+|       |   |   
+|       |   +---create
+|       |   |       page.tsx
+|       |   |       
+|       |   \---[id]
+|       |       \---edit
+|       \---issues
++---components
+|   +---form
+|   |       AlertBanner.tsx
+|   |       FormFileUpload.tsx
+|   |       FormInput.tsx
+|   |       FormSelect.tsx
+|   |       FormTextArea.tsx
+|   |       
+|   +---layout
+|   |       appshell.tsx
+|   |       footer.tsx
+|   |       sidebar.tsx
+|   |       topbar.tsx
+|   |       
+|   +---table
+|   |       DataTable.tsx
+|   |       FilterBy.tsx
+|   |       Paginations.tsx
+|   |       
+|   \---ui
+|           Button.tsx
+|           CaseStatusChart.tsx
+|           sidebar-context.tsx
+|           StatCard.tsx
+|           ThemeSwitch.tsx
+|           ThemeToggle.tsx
+|           
++---data
+|       data.ts
+|       
++---lib
+|       theme-provider.tsx
+|       utils.ts
+|       
++---store
+\---types
+        typedata.ts
+        

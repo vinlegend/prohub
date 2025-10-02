@@ -1,26 +1,215 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+/* ── 1) LIGHT THEME VALUES (from your palette) ───────────────────────────── */
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Text & Fill */
+    --foreground:            #121319; /* Main Text */
+    --muted-foreground:      #64748B; /* Secondary text */
+    /* Surfaces */
+    --background:            #F1F5F9; /* Main BG */
+    --card:                  #FFFFFF; /* Main Card / popovers */
+    --table-header:          #F8FAFC; /* Table Header */
+    --table-row-1:           #FFFFFF; /* Table Row 1 */
+    --table-row-2:           #F1F5F9; /* Table Row 2 */
+
+    /* Sidebar */
+    --sidebar-bg:            #F1F5F9; /* Sidemenu bg/inactive fill */
+    --sidebar-text:          #1F2937; /* Sidemenu text (base) */
+    --sidebar-active:        #1D4ED8; /* Sidemenu Active (brand blue) */
+    --sidebar-active-fill:   #DBEAFE; /* Sidemenu Active Fill */
+
+    /* Buttons */
+    --btn-primary:           #1D4ED8; /* Main Button */
+    --btn-primary-fg:        #FFFFFF; /* Button Text */
+    --btn-primary-hover:     #1E40AF;
+    --btn-secondary:         #E2E8F0; /* Secondary Button */
+    --btn-secondary-fg:      #111827;
+    --btn-secondary-hover:   #CBD5E1;
+
+    /* Stroke / inputs / ring */
+    --border:                #E2E8F0; /* Card & Table stroke */
+    --input:                 #E2E8F0; /* Inputs */
+    --ring:                  #1D4ED8; /* Focus ring */
+
+    /* Danger */
+    --destructive:           #DC2626;
+    --destructive-foreground:#FFFFFF;
+
+    /* Radius */
+    --radius: .5rem;
+
+    --alert-success-bg:    #ECFDF5; /* very soft green */
+    --alert-success-border:#A7F3D0;
+    --alert-success-text:  #065F46;
+
+    --alert-error-bg:      #FEF2F2; /* very soft red */
+    --alert-error-border:  #FECACA;
+    --alert-error-text:    #B91C1C;
+
+    color-scheme: light;
+
+    --color-table-hd:            #F8FAFC;  /* light header bg */
+    --color-table-hd-foreground: #1F2937;  /* light header text */
+
+    --alert-warning-bg:      #FFFBEB;  /* soft amber */
+    --alert-warning-border:  #FDE68A;  /* lighter amber */
+    --alert-warning-text:    #92400E;  /* strong amber text */
+    
   }
+
+  /* ── 2) DARK THEME OVERRIDES (from your palette) ──────────────────────── */
+  .dark {
+    /* Text & Fill */
+    --foreground:            #F8FAFC; /* Main Text Darkmode */
+    --muted-foreground:      #A3AFC2; /* Secondary Darkmode */
+
+    /* Surfaces */
+    --background:            #0F172A; /* Main background Darkmode */
+    --card:                  #1E293B; /* Main card Darkmode */
+    --table-header:          #334155; /* Table Header Darkmode */
+    --table-row-1:           #0F172A;
+    --table-row-2:           #111827;
+
+    /* Sidebar */
+    --sidebar-bg:            #1E293B; /* Sidebar bg dark */
+    --sidebar-text:          #E5E7EB;
+    --sidebar-active:        #1D4ED8; /* keep brand */
+    --sidebar-active-fill:   #1E40AF33; /* ~20% alpha of brand for fill */
+
+    /* Buttons */
+    --btn-primary:           #1D4ED8;
+    --btn-primary-fg:        #FFFFFF;
+    --btn-primary-hover:     #1E40AF;
+    --btn-secondary:         #374151;
+    --btn-secondary-fg:      #F9FAFB;
+    --btn-secondary-hover:   #4B5563;
+
+    /* Stroke / inputs / ring */
+    --border:                #30363D;
+    --input:                 #334155;
+    --ring:                  #60A5FA;
+
+    /* Danger */
+    --destructive:           #EF4444;
+    --destructive-foreground:#0B0F19;
+
+    color-scheme: dark;
+
+    --color-table-hd:            #334155; 
+    --color-table-hd-foreground: #CBD5E1;  
+
+    --alert-success-bg:    rgba(6, 95, 70, 0.3);
+    --alert-success-border:#34D399;
+    --alert-success-text:  #A7F3D0;
+
+    --alert-error-bg:      rgba(190, 18, 60, 0.3);
+    --alert-error-border:  #FB7185;
+    --alert-error-text:    #FCA5A5;
+
+    --alert-warning-bg:      rgba(146, 64, 14, 0.3); 
+    --alert-warning-border:  #F59E0B;                 
+    --alert-warning-text:    #FCD34D;  
+
+  }
+
+  /* Base plumbing */
+  * { @apply border-border; }
+  body { @apply bg-background text-foreground; }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ── 3) TAILWIND v4 MAPPING → enables bg-background, text-foreground, etc. */
+@theme inline {
+  /* Core */
+  --color-background:             var(--background);
+  --color-foreground:             var(--foreground);
+
+  /* Surfaces */
+  --color-card:                   var(--card);
+  --color-popover:                var(--card);
+  --color-table-header:           var(--table-header);
+  --color-table-row-1:            var(--table-row-1);
+  --color-table-row-2:            var(--table-row-2);
+
+  /* Tokens used by components */
+  --color-muted-foreground:       var(--muted-foreground);
+  --color-border:                 var(--border);
+  --color-input:                  var(--input);
+  --color-ring:                   var(--ring);
+  
+
+  /* Brand/accents */
+  --color-primary:                var(--btn-primary);
+  --color-primary-foreground:     var(--btn-primary-fg);
+  --color-secondary:              var(--btn-secondary);
+  --color-secondary-foreground:   var(--btn-secondary-fg);
+  --color-accent:                 var(--sidebar-active-fill);
+  --color-accent-foreground:      var(--foreground);
+
+  /* Danger */
+  --color-destructive:            var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  /* Sidebar convenience */
+  --color-sidebar:                 var(--sidebar-bg);
+  --color-sidebar-foreground:      var(--sidebar-text);
+  --color-sidebar-primary:         var(--sidebar-active);
+  --color-sidebar-primary-foreground: var(--btn-primary-fg);
+
+  /* Radius (for shadcn-style rounded-{lg,md,sm}) */
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+  
+  --color-alert-success-bg:     var(--alert-success-bg);
+  --color-alert-success-border: var(--alert-success-border);
+  --color-alert-success-text:   var(--alert-success-text);
+
+  --color-alert-error-bg:       var(--alert-error-bg);
+  --color-alert-error-border:   var(--alert-error-border);
+  --color-alert-error-text:     var(--alert-error-text);
+
+  --color-alert-warning-bg:     var(--alert-warning-bg);
+  --color-alert-warning-border: var(--alert-warning-border);
+  --color-alert-warning-text:   var(--alert-warning-text);
 }
+
+
+.table-zebra tbody tr:nth-child(even) { background: var(--color-table-row-1); }
+.table-zebra tbody tr:nth-child(odd)  { background: var(--color-table-row-2); }
+
+.dark .table-zebra tbody tr { background: var(--card); }
+
+@layer components {
+  .select-token {
+    @apply appearance-none rounded-lg
+           border border-border
+           bg-card text-foreground
+           px-4 pr-8 py-2 text-sm font-medium shadow-sm
+           transition-colors;
+    @apply focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0;
+
+    /* hover tint using your palette accent */
+    @apply hover:bg-accent/40 dark:hover:bg-accent/30;
+  }
+
+  /* Remove native arrow */
+  select.select-token {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: none;
+  }
+
+  /* Option colors (best-effort; browser-dependent) */
+  select.select-token option {
+    background-color: var(--card);
+    color: var(--foreground);
+  }
+
+  /* Correct OS form palette */
+  .select-token { color-scheme: light; }
+  .dark .select-token { color-scheme: dark; }
+}
+
